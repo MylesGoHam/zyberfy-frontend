@@ -1,54 +1,136 @@
-// File: zyberfy-frontend/src/App.js
-
-import React from 'react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function App() {
+  const [sender, setSender] = useState("");
+  const [recipient, setRecipient] = useState("");
+  const [tone, setTone] = useState("Professional");
+  const [email, setEmail] = useState("");
+  const [reply, setReply] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleGenerate = async () => {
+    if (!sender || !recipient || !email) {
+      setReply("Please fill in all fields.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sender, recipient, tone, email }),
+      });
+      const data = await response.json();
+      setReply(data.reply || "No reply generated.");
+    } catch (error) {
+      setReply("Error generating reply.");
+    }
+    setLoading(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-950 text-white px-4">
-      {/* Header */}
-      <header className="text-center py-12">
-        <h1 className="text-4xl font-extrabold text-electric-blue mb-4">Zyberfy</h1>
-        <p className="text-xl font-medium">Reply without replying.</p>
-        <p className="text-lg text-gray-300 mt-2">Smart email replies tailored to your voice.</p>
-      </header>
+    <main className="min-h-screen bg-white text-gray-800 px-4 py-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-2xl mx-auto"
+      >
+        <h1 className="text-4xl font-bold text-center mb-6 text-electric-blue">Zyberfy</h1>
+        <p className="text-center text-gray-500 mb-8">AI replies tailored to your voice.</p>
 
-      {/* Features */}
-      <section className="max-w-3xl mx-auto py-10">
-        <h2 className="text-2xl font-semibold mb-4">Features</h2>
-        <ul className="list-disc list-inside space-y-2">
-          <li>AI-Powered Smart Email Replies</li>
-          <li>Dynamic & Personalized Templates</li>
-          <li>Robust Analytics & Reporting</li>
-          <li>Seamless Integration with Existing Tools</li>
-        </ul>
+        <div className="space-y-4">
+          <input
+            placeholder="Sender"
+            value={sender}
+            onChange={(e) => setSender(e.target.value)}
+            className="w-full border border-gray-300 rounded-xl p-3"
+          />
+          <input
+            placeholder="Recipient"
+            value={recipient}
+            onChange={(e) => setRecipient(e.target.value)}
+            className="w-full border border-gray-300 rounded-xl p-3"
+          />
+          <select
+            value={tone}
+            onChange={(e) => setTone(e.target.value)}
+            className="w-full border border-gray-300 rounded-xl p-3"
+          >
+            <option value="Professional">Professional</option>
+            <option value="Friendly">Friendly</option>
+            <option value="Witty">Witty</option>
+          </select>
+          <textarea
+            placeholder="Paste the email here..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full border border-gray-300 rounded-xl p-3 h-32"
+          />
+          <button
+            onClick={handleGenerate}
+            disabled={loading || !sender || !recipient || !email}
+            className="w-full bg-electric-blue text-white py-3 rounded-xl font-semibold transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? "Generating..." : "Generate Reply"}
+          </button>
+        </div>
+
+        {reply && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-6 p-4 bg-gray-100 border border-gray-200 rounded-xl whitespace-pre-wrap"
+          >
+            {reply}
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(reply);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }}
+              className="mt-4 text-sm bg-electric-blue text-white px-4 py-2 rounded hover:brightness-110 transition"
+            >
+              {copied ? "Copied!" : "Copy to Clipboard"}
+            </button>
+          </motion.div>
+        )}
+      </motion.div>
+
+      {/* Testimonials */}
+      <section className="max-w-4xl mx-auto mt-20 px-4 border-t pt-16">
+        <h2 className="text-2xl font-semibold text-center mb-8">What Others Are Saying</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              name: "Emma L.",
+              quote: "Zyberfy cut my email time in half. It's like having a full-time assistant.",
+            },
+            {
+              name: "James W.",
+              quote: "The replies sound just like me. Super impressed with the quality.",
+            },
+            {
+              name: "Sophia R.",
+              quote: "As a small business owner, this tool is a game-changer.",
+            },
+          ].map((testimonial, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.5 }}
+              className="bg-white p-6 rounded-2xl shadow-md border border-gray-200"
+            >
+              <p className="text-gray-600 italic mb-4">“{testimonial.quote}”</p>
+              <p className="font-semibold text-gray-900">— {testimonial.name}</p>
+            </motion.div>
+          ))}
+        </div>
       </section>
-
-      {/* How It Works */}
-      <section className="max-w-3xl mx-auto py-10">
-        <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
-        <ol className="list-decimal list-inside space-y-2">
-          <li>Connect your inbox securely</li>
-          <li>Choose your tone and preferences</li>
-          <li>Let Zyberfy draft and send replies</li>
-        </ol>
-      </section>
-
-      {/* CTA */}
-      <section className="text-center py-10">
-        <h2 className="text-xl font-semibold mb-2">Emails piling up?</h2>
-        <p className="text-gray-300 mb-4">Take back your time with Zyberfy.</p>
-        <a
-          href="#"
-          className="inline-block bg-electric-blue text-black px-6 py-3 rounded-2xl font-semibold hover:brightness-110 transition"
-        >
-          Join the Waitlist
-        </a>
-      </section>
-
-      {/* Footer */}
-      <footer className="text-center py-6 text-gray-500 border-t border-gray-800">
-        © Zyberfy 2025. All rights reserved.
-      </footer>
-    </div>
+    </main>
   );
 }
