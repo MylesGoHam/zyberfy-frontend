@@ -2,9 +2,9 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-# 🔐 Paste your actual API key and verified sender email below
-SENDGRID_API_KEY = "SGSENDGRID_API_KEY=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"
-FROM_EMAIL = "your_verified_email@zyberfy.com"
+# 🔐 Paste your actual SendGrid API key and verified sender email below
+SENDGRID_API_KEY = "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"  # Replace with your real key
+FROM_EMAIL = "hello@zyberfy.com"  # Must be verified in SendGrid
 
 def send_email(to_email, subject, message):
     email = Mail(
@@ -23,7 +23,7 @@ def send_email(to_email, subject, message):
 
 if __name__ == "__main__":
     send_email(
-        "your_email@yourdomain.com",  # 👈 put your own email here to test
+        "your_personal_email@gmail.com",  # ← Change to a real test inbox you own
         "Welcome to Zyberfy!",
-        "This is a test email from Zyberfy 💙"
+        "This is a test email from Zyberfy 🚀"
     )
