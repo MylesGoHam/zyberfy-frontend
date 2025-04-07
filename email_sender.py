@@ -3,7 +3,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 # Your real API key and verified sender email
-SENDGRID_API_KEY = "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"  # paste your actual API key here
+SENDGRID_API_KEY = "SSG.OIchAJn-TZOJ1kbCeAf83g.n-5hVrweXtPl8FI6OqP3XzNtHRkB1tYS0htORbr7ji8"  # paste your actual API key here
 FROM_EMAIL = "hello@zyberfy.com"
 
 def send_email(to_email, subject, message):
