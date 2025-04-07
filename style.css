@@ -1,35 +1,56 @@
 :root {
     --brand-blue: #007bff;
+    --text-color: #222;
+    --gray: #888;
   }
   
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffffff;
+    color: var(--text-color);
+  }
+  
+  .container {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
   }
   
   header {
-    background-color: var(--brand-blue);
-    color: #fff;
-    padding: 40px;
     text-align: center;
+    margin-bottom: 50px;
   }
   
-  h1 {
-    margin: 0;
-    font-size: 2.5rem;
+  .logo {
+    font-size: 3.5rem;
+    color: var(--brand-blue);
+    margin-bottom: 10px;
   }
   
-  section {
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
+  .subtitle {
+    font-size: 1.3rem;
+    color: var(--gray);
+  }
+  
+  .features h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .features ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    font-size: 1.1rem;
+    line-height: 1.6;
   }
   
   footer {
-    background-color: #f0f0f0;
     text-align: center;
-    padding: 10px;
+    color: var(--gray);
     font-size: 0.9rem;
+    margin-top: 80px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
   }
