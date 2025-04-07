@@ -2,7 +2,7 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-SENDGRID_API_KEY = 'your_real_api_key_here'  # Replace with your actual SendGrid key
+SENDGRID_API_KEY = "your_real_api_key"  # Replace with your actual SendGrid key
 FROM_EMAIL = 'your_verified@zyberfy.com'     # Replace with your verified SendGrid sender
 TO_EMAIL = 'your_email@gmail.com'            # Replace with your email to receive the test
 
