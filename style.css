@@ -1,15 +1,18 @@
-/* --- Logo + Navbar --- */
+/* === Logo + Nav Bar === */
 .logo {
   font-size: 3rem;
   color: #007bff; /* Electric Blue */
   font-weight: bold;
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 20px 40px;
+  padding: 10px 0;
   background: white;
   border-bottom: 1px solid #ddd;
 }
@@ -18,23 +21,130 @@
   list-style: none;
   display: flex;
   gap: 30px;
+  padding: 0;
+  margin-left: 20px;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
+  color: #007bff;
+  font-weight: 600;
   transition: color 0.2s;
 }
 
 .nav-links li a:hover {
-  color: #007bff;
+  color: #0056b3;
 }
 
-/* --- Section Lines --- */
+/* === Hero Section === */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+/* === Features Section === */
+.features {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.feature-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.feature-card {
+  background: #f3f3f3;
+  border-radius: 12px;
+  padding: 25px;
+  width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* === CTA Section === */
+.cta {
+  text-align: center;
+  background-color: #f3f3f3;
+  padding: 100px 20px;
+  border-radius: 20px;
+  margin: 80px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* === Testimonials === */
+.testimonials {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.testimonial {
+  background: #f3f3f3;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial span {
+  display: block;
+  margin-top: 10px;
+  font-style: italic;
+  color: #777;
+}
+
+/* === Section Lines === */
 hr {
   border: none;
   height: 1px;
   background: #eee;
   margin: 60px 0;
+}
+
+/* === Footer === */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #777;
+  font-size: 0.9rem;
 }
