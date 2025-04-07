@@ -1,0 +1,67 @@
+.cta-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #005dd1;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 100px 20px 60px;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  
+  .feature-card {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  
+  .feature-card h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  .testimonials {
+    max-width: 700px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .testimonials h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .testimonial {
+    background: #f3f3f3;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .testimonial span {
+    display: block;
+    margin-top: 10px;
+    font-style: italic;
+    color: #777;
+  }
