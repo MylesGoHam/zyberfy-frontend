@@ -6,7 +6,7 @@ from sendgrid.helpers.mail import Mail
 SENDGRID_API_KEY = "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"  # Replace with your real key
 FROM_EMAIL = "hello@zyberfy.com"  # Must be verified in SendGrid
 
-def send_email(mylescunningham0gmail.com,Hi,Hello):
+dsend_email(mylescunninghamlesingham@gmail.com, "Hi", "Hello:")
     email = Mail(
         from_email=hello@zyberfy.com,
         to_emails=mylescunnigham0@gmail.com,
