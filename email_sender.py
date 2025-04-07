@@ -2,12 +2,12 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-# Load from env or directly paste your key here for now
-SENDGRID_API_KEY = 'YOUR_API_KEY_HERE'  # Replace with your real key
-FROM_EMAIL = 'yourname@zyberfy.com'     # Replace with your verified sender email
+SENDGRID_API_KEY = 'your_real_api_key_here'  # Replace with your actual SendGrid key
+FROM_EMAIL = 'your_verified@zyberfy.com'     # Replace with your verified SendGrid sender
+TO_EMAIL = 'your_email@gmail.com'            # Replace with your email to receive the test
 
 def send_email(to_email, subject, message):
-    email = Mail(
+    mail = Mail(
         from_email=FROM_EMAIL,
         to_emails=to_email,
         subject=subject,
@@ -16,11 +16,10 @@ def send_email(to_email, subject, message):
 
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
-        response = sg.send(email)
-        print(f"Email sent to {to_email} | Status Code: {response.status_code}")
+        response = sg.send(mail)
+        print(f"✅ Email sent to {to_email} | Status Code: {response.status_code}")
     except Exception as e:
-        print(f"Error sending email: {e}")
+        print(f"❌ Error sending email: {e}")
 
-# Test it
 if __name__ == "__main__":
-    send_email("test@example.com", "Welcome to Zyberfy!", "This is a test email from Zyberfy 🚀")
+    send_email(TO_EMAIL, "Welcome to Zyberfy!", "This is a test email from the future 🔮")
