@@ -1,60 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zyberfy</title>
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Font Awesome for icons -->
-  <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS -->
-  <style>
-    /* Optional custom styles */
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zyberfy</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-gray-50">
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">Zyberfy</div>
+            <ul class="nav-links">
+                <li><a href="#features">What We Do</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <!-- Add a dropdown menu on the right -->
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="#mission">Our Mission</a>
+                    <a href="#pricing">What We Charge</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+            </div>
+        </nav>
+        
+        <header class="hero">
+            <h1 class="logo">Zyberfy</h1>
+            <p class="tagline">AI email automation for luxury service professionals.</p>
+        </header>
 
-  <!-- Header -->
-  <header class="flex justify-between items-center p-6 bg-white shadow-md">
-    <!-- Logo (Zyberfy) on the left -->
-    <div class="text-2xl font-semibold text-blue-600 ml-4">
-      Zyberfy
+        <section id="features" class="features">
+            <h2>Why Choose Zyberfy?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Smart Replies</h3>
+                    <p>Respond instantly with personalized, tone-matched replies.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Full Automation</h3>
+                    <p>Hands-free handling of your inbox, 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Client-Ready</h3>
+                    <p>Trusted by luxury brands and tailored for premium communication.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to Elevate Your Inbox?</h2>
+            <p>Start your free trial and experience premium AI email replies for luxury services.</p>
+            <a href="#features" class="cta-button">Get Started</a>
+        </section>
+
+        <footer>
+            <p>2025 Zyberfy. All rights reserved.</p>
+        </footer>
     </div>
-
-    <!-- Dropdown menu (3 dots) -->
-    <div class="relative dropdown ml-6">
-      <button class="text-3xl text-gray-700">...</button>
-      <div class="dropdown-content absolute hidden text-gray-700 bg-white border shadow-lg top-full right-0 w-48 rounded-md mt-2">
-        <ul>
-          <li><a href="#what-we-charge" class="block px-4 py-2">What We Charge</a></li>
-          <li><a href="#our-mission" class="block px-4 py-2">Our Mission</a></li>
-          <li><a href="#faq" class="block px-4 py-2">FAQ</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="p-6">
-    <h1 class="text-center text-4xl font-bold mb-8">Welcome to Zyberfy</h1>
-    <p class="text-center text-lg text-gray-600">
-      We're here to revolutionize your email and automation needs.
-    </p>
-  </main>
-
-  <!-- Social Media Icons -->
-  <footer class="flex justify-center items-center space-x-6 py-6 bg-gray-200">
-    <a href="https://twitter.com/Zyberfy" class="text-xl text-blue-600" target="_blank" aria-label="Zyberfy on Twitter">
-      <i class="fab fa-twitter"></i> X
-    </a>
-    <a href="https://instagram.com/Zyberfy" class="text-xl text-blue-600" target="_blank" aria-label="Zyberfy on Instagram">
-      <i class="fab fa-instagram"></i> Instagram
-    </a>
-    <a href="https://youtube.com/Zyberfy" class="text-xl text-blue-600" target="_blank" aria-label="Zyberfy on YouTube">
-      <i class="fab fa-youtube"></i> YouTube
-    </a>
-  </footer>
-
 </body>
 </html>
