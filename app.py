@@ -21,7 +21,7 @@ def index():
 # Route to handle form submission
 @app.route('/submit-proposal', methods=['POST'])
 def submit_proposal():
-    # Extract form data
+    print("Received POST request")  # Add this line
     name = request.form.get('name')
     email = request.form.get('email')
     service = request.form.get('service')
@@ -29,14 +29,14 @@ def submit_proposal():
     location = request.form.get('location')
     special_requests = request.form.get('requests')
 
-    # Debug: Print received data
-    print(f"Received Proposal Request:")
+    # Debug print statements
     print(f"Name: {name}")
     print(f"Email: {email}")
     print(f"Service: {service}")
     print(f"Budget: {budget}")
     print(f"Location: {location}")
     print(f"Special Requests: {special_requests}")
+    return "Proposal submitted successfully!"
 
     # Send email using SendGrid
     from_email = Email(os.getenv("SENDER_EMAIL"))
