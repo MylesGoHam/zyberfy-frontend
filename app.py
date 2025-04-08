@@ -1,27 +1,22 @@
-dGrid API client
-sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
+@app.route('/submit-proposal', methods=['POST'])
+def submit_proposal():
+    # Extract form data
+    name = request.form.get('name')
+    email = request.form.get('email')
+    service = request.form.get('service')
+    budget = request.form.get('budget')
+    location = request.form.get('location')
+    special_requests = request.form.get('requests')
 
-# Create email components
-from_email = Email(SENDER_EMAIL)  # Replace with your sender email
-to_email = To(email)  # Send the email to the user who submitted the form
-subject = f"Proposal for {service} Service"
-content = Content("text/plain", f"""
-Hello {name},
+    # Debug: Print received data
+    print(f"Received Proposal Request:")
+    print(f"Name: {name}")
+    print(f"Email: {email}")
+    print(f"Service: {service}")
+    print(f"Budget: {budget}")
+    print(f"Location: {location}")
+    print(f"Special Requests: {special_requests}")
 
-Thank you for your inquiry regarding our {service} service. Here is the proposal:
-- Budget: {budget}
-- Location: {location}
-- Special Requests: {special_requests}
+    # Send email logic (SendGrid integration here)
 
-Best regards,
-Zyberfy Team
-""")
-
-# Build and send the email
-mail = Mail(from_email, to_email, subject, content)
-
-try:
-    response = sg.send(mail)
-    print(f"Email sent successfully! Status Code: {response.status_code}")
-except Exception as e:
-    print(f"Error: {str(e)}")
+    return 'Proposal submitted successfully!'
