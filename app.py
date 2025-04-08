@@ -2,16 +2,20 @@ from flask import Flask, request, render_template
 import sendgrid
 from sendgrid.helpers.mail import Mail, Email, To, Content
 import os
+from dotenv import load_dotenv
 
 # Load environment variables
-from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize Flask app (Ensure this line is here)
-app = Flask(__name__)  # This initializes your Flask application.
+app = Flask(__name__)
 
-# Initialize SendGrid API client
+# Initialize SendGrid API Client
 sg = sendgrid.SendGridAPIClient(api_key=os.getenv("SENDGRID_API_KEY"))
+
+# Import and configure CORS
+from flask_cors import CORS
+CORS(app)  # This will allow all origins by default
 
 # Route to render index.html
 @app.route('/')
@@ -21,7 +25,8 @@ def index():
 # Route to handle form submission
 @app.route('/submit-proposal', methods=['POST'])
 def submit_proposal():
-    print("Received POST request")  # Add this line
+    # Debugging: Print received data
+    print("Received POST request:")
     name = request.form.get('name')
     email = request.form.get('email')
     service = request.form.get('service')
@@ -36,7 +41,6 @@ def submit_proposal():
     print(f"Budget: {budget}")
     print(f"Location: {location}")
     print(f"Special Requests: {special_requests}")
-    return "Proposal submitted successfully!"
 
     # Send email using SendGrid
     from_email = Email(os.getenv("SENDER_EMAIL"))
@@ -62,8 +66,8 @@ def submit_proposal():
     except Exception as e:
         print(f"Error sending email: {str(e)}")
 
-    return 'Proposal submitted successfully!'
+    return "Proposal submitted successfully!"
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # Ensure this line is here
