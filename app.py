@@ -7,8 +7,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Initialize Flask app
-app = Flask(__name__)
+# Initialize Flask app (Ensure this line is here)
+app = Flask(__name__)  # This initializes your Flask application.
 
 # Initialize SendGrid API client
 sg = sendgrid.SendGridAPIClient(api_key=os.getenv("SENDGRID_API_KEY"))
@@ -21,7 +21,7 @@ def index():
 # Route to handle form submission
 @app.route('/submit-proposal', methods=['POST'])
 def submit_proposal():
-    # 1. Extract form data
+    # Extract form data
     name = request.form.get('name')
     email = request.form.get('email')
     service = request.form.get('service')
@@ -29,7 +29,7 @@ def submit_proposal():
     location = request.form.get('location')
     special_requests = request.form.get('requests')
 
-    # 2. Debug: Print received data to terminal
+    # Debug: Print received data
     print(f"Received Proposal Request:")
     print(f"Name: {name}")
     print(f"Email: {email}")
@@ -38,9 +38,9 @@ def submit_proposal():
     print(f"Location: {location}")
     print(f"Special Requests: {special_requests}")
 
-    # 3. Send email using SendGrid
-    from_email = Email(os.getenv("SENDER_EMAIL"))  # Your email address
-    to_email = To(email)  # Email entered by the user
+    # Send email using SendGrid
+    from_email = Email(os.getenv("SENDER_EMAIL"))
+    to_email = To(email)
     subject = f"Proposal for {service} Service"
     content = Content("text/plain", f"""
     Hello {name},
