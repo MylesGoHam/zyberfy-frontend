@@ -1,43 +1,27 @@
-from flask import Flask, render_template, request, jsonify
+dGrid API client
+sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
 
-app = Flask(__name__)
+# Create email components
+from_email = Email(SENDER_EMAIL)  # Replace with your sender email
+to_email = To(email)  # Send the email to the user who submitted the form
+subject = f"Proposal for {service} Service"
+content = Content("text/plain", f"""
+Hello {name},
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+Thank you for your inquiry regarding our {service} service. Here is the proposal:
+- Budget: {budget}
+- Location: {location}
+- Special Requests: {special_requests}
 
-@app.route('/submit-proposal', methods=['POST'])
-def submit_proposal():
-    # Extract form data
-    name = request.form.get('name')
-    email = request.form.get('email')
-    service = request.form.get('service')
-    budget = request.form.get('budget')
-    location = request.form.get('location')
-    special_requests = request.form.get('requests', '')
+Best regards,
+Zyberfy Team
+""")
 
-    # Print for debugging
-    print("Name:", name)
-    print("Email:", email)
-    print("Service:", service)
-    print("Budget:", budget)
-    print("Location:", location)
-    print("Special Requests:", special_requests)
+# Build and send the email
+mail = Mail(from_email, to_email, subject, content)
 
-    # Return JSON response for testing
-    return jsonify({
-        "status": "success",
-        "message": "Proposal request received.",
-        "data": {
-            "name": name,
-            "email": email,
-            "service": service,
-            "budget": budget,
-            "location": location,
-            "special_requests": special_requests
-        }
-    })
-
-if __name__ == "__main__":
-    print("Starting Flask server...")
-    app.run(debug=True)
+try:
+    response = sg.send(mail)
+    print(f"Email sent successfully! Status Code: {response.status_code}")
+except Exception as e:
+    print(f"Error: {str(e)}")
