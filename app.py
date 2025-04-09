@@ -44,8 +44,8 @@ def index():
     return render_template("index.html")
 
 def send_email(subject, content):
-    from_email = Email("your_verified_email@domain.com")
-    to_email = To("recipient_email@domain.com")
+    from_email = Email("hello@zyberfy.com")
+    to_email = To("mylescunningham0@gmail.com")
     content = Content("text/plain", content)
     mail = Mail(from_email, to_email, subject, content)
 
