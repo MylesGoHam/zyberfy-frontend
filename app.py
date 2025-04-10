@@ -1,71 +1,41 @@
-from flask import Flask, request, render_template
-import sendgrid
-from sendgrid.helpers.mail import Mail, Email, To, Content
-from dotenv import load_dotenv
-import os
+<form action="/" method="POST" class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
+  <div class="mb-4">
+      <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+      <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded" required />
+  </div>
 
-# Load environment variables
-load_dotenv()
+  <div class="mb-4">
+      <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+      <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded" required />
+  </div>
 
-# Initialize Flask app
-app = Flask(__name__)
+  <div class="mb-4">
+      <label for="service" class="block text-gray-700 font-medium mb-2">Service Type</label>
+      <select id="service" name="service" class="w-full p-2 border border-gray-300 rounded">
+          <option value="luxury-travel">Luxury Travel</option>
+          <option value="event-planning">Event Planning</option>
+          <option value="yacht-charter">Yacht Charter</option>
+          <option value="interior-design">Interior Design</option>
+          <option value="other">Other</option>
+      </select>
+  </div>
 
-# SendGrid setup
-SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+  <div class="mb-4">
+      <label for="budget" class="block text-gray-700 font-medium mb-2">Budget</label>
+      <input type="number" id="budget" name="budget" class="w-full p-2 border border-gray-300 rounded" placeholder="$10,000" required step="0.01" />
+  </div>
 
-@app.route("/", methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
-        try:
-            # Get form data
-            email = request.form.get("email")
-            service = request.form.get("service")
-            budget = request.form.get("budget")
-            location = request.form.get("location")
-            
-            # Print form data for debugging
-            print(f"Email: {email}, Service: {service}, Budget: {budget}, Location: {location}")
-            
-            # Create email content
-            subject = f"New request for {service}"
-            content = f"""
-            Name: {email}
-            Service: {service}
-            Budget: {budget}
-            Location: {location}
-            """
-            
-            # Send email through SendGrid
-            send_email(subject, content)
-            
-            return "Email sent successfully!"
-        
-        except Exception as e:
-            # If an error occurs, catch it and print it in the console for debugging
-            print(f"Error: {e}")
-            return f"An error occurred: {e}"
-    
-    return render_template("index.html")
+  <div class="mb-4">
+      <label for="location" class="block text-gray-700 font-medium mb-2">Location</label>
+      <input type="text" id="location" name="location" class="w-full p-2 border border-gray-300 rounded" placeholder="City, Country" />
+  </div>
 
-def send_email(subject, content):
-    try:
-        from_email = Email("hello@zyberfy.com")
-        to_email = To("mylescunningham0@gmail.com")
-        content = Content("text/plain", content)
-        mail = Mail(from_email, to_email, subject, content)
+  <div class="mb-4">
+      <label for="requests" class="block text-gray-700 font-medium mb-2">Special Requests</label>
+      <textarea id="requests" name="requests" class="w-full p-2 border border-gray-300 rounded" rows="4"></textarea>
+  </div>
 
-        sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
-        response = sg.send(mail)
-        
-        # Debugging output
-        print(f"SendGrid Response: {response.status_code}")
-        print(f"Response Body: {response.body}")
-        print(f"Response Headers: {response.headers}")
-    
-    except Exception as e:
-        # Catch any exceptions in sending the email
-        print(f"SendGrid error: {e}")
-        raise e  # Re-raise the error to be caught in the index route
-
-if __name__ == "__main__":
-    app.run(debug=True)
+  <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+      Submit Proposal
+  </button>
+</form>
